@@ -4,14 +4,16 @@ import { LandingPage } from "./pages/landingPage";
 import { creds } from "./credentials";
 import { Dashboard } from "./pages/dashboardPage";
 import { MyASBA } from "./pages/myASBAPage";
+import { company } from "./pages/companyName";
 
 const landingPage = new LandingPage();
 const dashboardPage = new Dashboard();
 const myASBAPage = new MyASBA();
 
 describe("Apply IPO", () => {
+  const applyingCompany = company;
   // const { dpName, username, pass, crn, kitta, pin, companyName} = creds ;
-  const companyName = 'MIRMIRE'
+  // const companyName = 'Muktinath'
   it("Apply IPO Successfully", () => {
     cy.fixture("all.json").then((data) => {
       landingPage.navigateToSite();
@@ -27,7 +29,7 @@ describe("Apply IPO", () => {
         //Uncomment below code while applying IPO
 
         dashboardPage.navigateToMyASBA();
-        myASBAPage.selectCompany(companyName);
+        myASBAPage.selectCompany(applyingCompany);
         myASBAPage.fillForm(userData.needed_kitta, userData.crn, userData.tpin);
         cy.wait(1000);
         myASBAPage.logOut();
