@@ -7,6 +7,7 @@ export class MyASBA {
     companyLists = 'div[class = "company-list"]';
     reportButton = '.action-buttons > div >button'
     selectBankDropdown = '#selectBank';
+    selectAccountNumber = '#accountNumber'
     // requiredBankName = '1: 44'
     appliedKittaField = '#appliedKitta';
     crnField = '#crnNumber';
@@ -17,20 +18,45 @@ export class MyASBA {
     toastMsg = '.toast-message';
     logOutButton = 'a[tooltip="Logout"]';
 
+    // selectCompany(company_name) {
+    //     cy.get(this.companyLists, { timeout: 10000 }).each(($row) => {
+    //             cy.log("row text", $row.text())
+    //             if ($row.text().includes(company_name)) {
+    //                 // If company name is found, click the report button
+    //                 $row.find(this.reportButton).trigger('click');
+    //             } else {
+    //                 cy.log()
+    //                 // If company is not found, log an error and throw an exception
+    //                 cy.wrap($row).then(() => {
+    //                     throw new Error(`Company ${company_name} not found`);
+    //                 });
+    //             }
+    //         });
+    // }
     selectCompany(company_name) {
-        // cy.get(this.currentIssueTab).click();
-        // cy.get(this.applicationReportTab).click();
-        cy.get(this.companyLists, { timeout: 10000 })
-            .each(($row) => {
+        cy.get(this.companyLists, { timeout: 10000 }).then(($rows) => {
+            let found = false; // Flag to track if company is found
+    
+            cy.wrap($rows).each(($row) => {
+                cy.log("row text", $row.text());
                 if ($row.text().includes(company_name)) {
-                    $row.find(this.reportButton).trigger('click');
+                    found = true;
+                    cy.wrap($row).find(this.reportButton).click();
+                    return false; // Break out of .each()
                 }
-            })
+            }).then(() => {
+                if (!found) {
+                    throw new Error(`Company ${company_name} not found`);
+                }
+            });
+        });
     }
+    
+    
     fillForm(total_kitta, crn_number, pin) {
         cy.wait(1500)
         cy.get(this.selectBankDropdown).select(1); //select nic asia bank with value '1: 44'(Select tag)
-        // cy.get
+        cy.get(this.selectAccountNumber).should('be.visible').select(1)
         cy.get(this.appliedKittaField).type(total_kitta);
         cy.get(this.crnField).type(crn_number);
         cy.get(this.disclaimerCheckbox).click();
