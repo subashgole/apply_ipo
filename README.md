@@ -10,7 +10,6 @@ In order to use for multiple users, use cypress fixture to store test data for a
         "needed_kitta": "no of kitta",
         "crn": "crn number",
         "tpin": "transaction pin",
-        "company_name": "Not required(We pass company name directly on .cy.js file"
     },
     {
        "dp_name": "dpname or code",
