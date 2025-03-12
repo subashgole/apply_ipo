@@ -1,0 +1,1 @@
+export const companyy = 'Om Megashree'
