@@ -8,7 +8,6 @@ export class MyASBA {
     reportButton = '.action-buttons > div >button'
     selectBankDropdown = '#selectBank';
     selectAccountNumber = '#accountNumber'
-    // requiredBankName = '1: 44'
     appliedKittaField = '#appliedKitta';
     crnField = '#crnNumber';
     disclaimerCheckbox = '#disclaimer';
@@ -18,21 +17,6 @@ export class MyASBA {
     toastMsg = '.toast-message';
     logOutButton = 'a[tooltip="Logout"]';
 
-    // selectCompany(company_name) {
-    //     cy.get(this.companyLists, { timeout: 10000 }).each(($row) => {
-    //             cy.log("row text", $row.text())
-    //             if ($row.text().includes(company_name)) {
-    //                 // If company name is found, click the report button
-    //                 $row.find(this.reportButton).trigger('click');
-    //             } else {
-    //                 cy.log()
-    //                 // If company is not found, log an error and throw an exception
-    //                 cy.wrap($row).then(() => {
-    //                     throw new Error(`Company ${company_name} not found`);
-    //                 });
-    //             }
-    //         });
-    // }
     selectCompany(company_name) {
         cy.get(this.companyLists, { timeout: 10000 }).then(($rows) => {
             let found = false; // Flag to track if company is found
@@ -42,7 +26,7 @@ export class MyASBA {
                 if ($row.text().includes(company_name)) {
                     found = true;
                     cy.wrap($row).find(this.reportButton).click();
-                    return false; // Break out of .each()
+                    return false; 
                 }
             }).then(() => {
                 if (!found) {

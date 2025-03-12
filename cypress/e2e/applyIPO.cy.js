@@ -12,13 +12,10 @@ const myASBAPage = new MyASBA();
 
 describe("Apply IPO", () => {
   const applyingCompany = companyy;
-  // const { dpName, username, pass, crn, kitta, pin, companyName} = creds ;
-  // const companyName = 'Muktinath'
+
   it("Apply IPO Successfully", () => {
     cy.fixture("personal.json").then((data) => {
       landingPage.navigateToSite();
-      // cy.wait(5000);
-
       data.forEach((userData) => {
         landingPage.loginToSite(
           userData.dp_name,
@@ -26,7 +23,6 @@ describe("Apply IPO", () => {
           userData.password
         );
         cy.wait(1200)
-        //Uncomment below code while applying IPO
 
         dashboardPage.navigateToMyASBA();
         myASBAPage.selectCompany(applyingCompany);

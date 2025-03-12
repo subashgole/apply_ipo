@@ -11,8 +11,6 @@ export class LandingPage {
     navigateToSite () {
         cy.visit( "https://meroshare.cdsc.com.np/");
         cy.get(this.loginButton, {timeout: 60000}).should('be.visible')
-        // cy.intercept('https://webbackend.cdsc.com.np/api/meroShare/capital/').as('loginPage')
-        // cy.wait('@loginPage', {timeout: 60000})
     }
     loginToSite ( dpName, username, password) {
         cy.get( this.DPDropdown ).click();
