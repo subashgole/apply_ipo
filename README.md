@@ -1,10 +1,12 @@
 # apply_ipo
 Apply IPO using cypress
+- Create a folder 'fixtures' under 'cypress' folder. 
+- Create a json file 'credentials.json'
 
-In order to use for multiple users, use cypress fixture to store test data for automation. The fixtures folder contains JSON files. The structure for credentials is:
+Use cypress fixture to store test data for automation. The fixtures folder contains JSON files. The structure for credentials is:
 [
     {
-        "dp_name": "dpname or code",
+        "dp_name": "dp code",
         "username": "meroshare login username",
         "password": "Password",
         "needed_kitta": "no of kitta",
@@ -20,3 +22,4 @@ In order to use for multiple users, use cypress fixture to store test data for a
         "tpin": "transaction pin",
     }
 ]
+

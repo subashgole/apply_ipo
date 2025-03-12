@@ -14,7 +14,7 @@ describe("Apply IPO", () => {
   const applyingCompany = companyy;
 
   it("Apply IPO Successfully", () => {
-    cy.fixture("personal.json").then((data) => {
+    cy.fixture("credentials.json").then((data) => {
       landingPage.navigateToSite();
       data.forEach((userData) => {
         landingPage.loginToSite(
